@@ -26,13 +26,6 @@ def fetch(bucket_name, key_name):
     Fetching data from S3...
     Out[2]: '/path/to/some-file'
     """
-    # Check that authentication variables are defined.
-    try:
-        os.environ['AWS_ACCESS_KEY_ID']
-        os.environ['AWS_SECRET_ACCESS_KEY']
-    except KeyError:
-        raise Exception("You must define your AWS access keys as "
-                        "environmental variables.")
     stash_directory = os.environ.get('FETCH_STASH', '.')
     path = os.path.join(stash_directory, key_name)
     if os.path.isfile(path):
