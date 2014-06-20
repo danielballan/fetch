@@ -10,10 +10,13 @@ file paths to any resources (movies, large analysis results, etc.). Usually,
 their locations differ between individual computers. This is a drag.
 
 Fetch directs the notebook to check a local stash, specified individually
-on each computer by an environmental variable. If
-a stash is missing a given file, the file is automatically downloaded from
-Amazon S3 and retained locally for future use. If the files are later deleted
-to reclaim disk space, they can be downloaded again.
+on each computer by an environmental variable. For example, the stash might be
+`/Users/dallan/Data` on my computer and `C:\Users\Someone\Experiments` on
+yours. Fetch handles this implicitly.
+
+If a stash is missing a given file, that file is automatically downloaded from
+[Amazon S3](http://aws.amazon.com/s3/) and retained locally for future use. If the files are later deleted
+to reclaim disk space, they are downloaded again as needed.
 
 Installation & Setup
 --------------------
