@@ -18,7 +18,11 @@ to reclaim disk space, they can be downloaded again.
 Installation
 ------------
 
-Install fetch:
+Install fetch using pip:
+
+    pip install http://github.com/danielballan/fetch/zipball/master
+
+or, alternatively, using git:
 
     git clone http://github.com/danielballan/fetch
     cd fetch
