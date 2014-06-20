@@ -15,8 +15,8 @@ a stash is missing a given file, the file is automatically downloaded from
 Amazon S3 and retained locally for future use. If the files are later deleted
 to reclaim disk space, they can be downloaded again.
 
-Installation
-------------
+Installation & Setup
+--------------------
 
 Install fetch using pip:
 
@@ -40,3 +40,18 @@ files it downloads.
     export FETCH_STASH=/path/to/data-files
 
 Otherwise, fetch will put the files in the current working directory.
+
+Usage
+-----
+
+    >>> from fetch import fetch
+
+    >>> fetch('my-bucket-name', 'my-file')
+    Fetching data from S3...
+    '/path/to/fetch-stash/my-file'
+
+    >>> fetch('my-bucket-name', 'my-file')
+    '/path/to/fetch-stash/my-file'
+
+As illustrated above, the function `fetch` downloads the file if necessary
+and returns the local filepath.
