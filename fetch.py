@@ -2,7 +2,7 @@ from __future__ import print_function
 import os
 import boto
 
-def fetch(bucket_name, key_name):
+def fetch(bucket_name, key_name, local_only=False):
     """Fetch data from S3, and henceforth use a local copy.
 
     The file will be sought in the path specified by the environmental variable
@@ -36,6 +36,8 @@ def fetch(bucket_name, key_name):
     except OSError:
         if not os.path.isdir(directory):
             raise
+    if local_only:
+        raise ValueError("No local copy at {0}".format(path))
     print("Fetching data from S3...")
     boto.connect_s3().get_bucket(bucket_name).get_key(key_name).get_contents_to_filename(path)
     return path
