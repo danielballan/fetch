@@ -27,7 +27,7 @@ def fetch(bucket_name, key_name, local_only=False):
     Out[2]: '/path/to/some-file'
     """
     stash_directory = os.environ.get('FETCH_STASH', '.')
-    path = os.path.join(stash_directory, key_name)
+    path = os.path.join(stash_directory, bucket_name, key_name)
     if os.path.isfile(path):
         return path 
     directory = os.path.dirname(path)
