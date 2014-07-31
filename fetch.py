@@ -3,7 +3,7 @@ import os
 import boto
 
 
-def fetch(bucket_name, key_name, local_only=False):
+def fetch(bucket_name, key_name, local_only=False, profile_name=None):
     """Fetch data from S3, and henceforth use a local copy.
 
     The file will be sought in the path specified by the environmental variable
@@ -20,9 +20,14 @@ def fetch(bucket_name, key_name, local_only=False):
     Parameters
     ----------
     bucket_name : string
-       identifing S3 bucket
+        identifing S3 bucket
     key_name : string
-       file name ('key') of object to fetch
+        file name ('key') of object to fetch
+    local_only : boolean
+        If True, raise an error if file is not available locally.
+        Do not download.
+    profile_name : string
+        Specify a profile if you use multiple AWS credentials.
 
     Example
     -------
@@ -42,9 +47,19 @@ def fetch(bucket_name, key_name, local_only=False):
             raise
     if local_only:
         raise ValueError("No local copy at {0}".format(path))
-    print("Fetching data from S3...")
-    key = boto.connect_s3().get_bucket(bucket_name).get_key(key_name)
+    print_update("Fetching data from S3...")
+    c = boto.connect_s3(profile_name=profile_name)
+    key = c.get_bucket(bucket_name).get_key(key_name)
     if key is None:
         raise ValueError("That file could not be found. Verify the spelling.")
     key.get_contents_to_filename(path)
     return path
+
+
+def print_update(message):
+    try:
+        clear_output()
+    except Exception:
+        pass
+    print(message)
+    sys.stdout.flush()
