@@ -31,11 +31,27 @@ or, alternatively, using git:
     cd fetch
     python setup.py install
 
+### AWS Authentication
+
 If you have not already done so, you must set up Amazon AWS authentication
 by defining environmental variables.
 
     export AWS_ACCESS_KEY_ID=...
     export AWS_SECRET_ACCESS_KEY=...
+
+or, **on Windows**, by writing a config file like
+
+    [Credentials]
+    aws_access_key_id = ...
+    aws_secret_access_key = ...
+
+and [setting the environmental variable](http://www.computerhope.com/issues/ch000549.htm)
+`BOTO_CONFIG` to this file. The
+file can be called anything and stored anywhere.
+
+More detailed documentation is available in the [documentation for boto](http://www.computerhope.com/issues/ch000549.htm), Amazon's Python package for interacting with AWS services.
+
+### Customize Where Files are Stored Locally
 
 You can also specify the directory where fetch will stash local copy of the
 files it downloads.
