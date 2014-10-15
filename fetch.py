@@ -4,6 +4,11 @@ import os
 import boto
 
 
+from _version import get_versions
+__version__ = get_versions()['version']
+del get_versions
+
+
 def fetch(bucket_name, key_name, local_only=False, profile_name=None):
     """Fetch data from S3, and henceforth use a local copy.
 
